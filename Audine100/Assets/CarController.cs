@@ -6,7 +6,7 @@ public class CarController : MonoBehaviour
 {
     public Rigidbody2D backTire;
     public Rigidbody2D frontTire;
-    public float brakeForce;
+    public float brakeForce = 5000f;
     private bool isBraking;
     public float speed = 100;
     private float jumpingPower = 45f;
@@ -77,6 +77,11 @@ public class CarController : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
             // Stop the game
             Time.timeScale = 0;
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            rb.AddForce(-rb.velocity.normalized * 10f, ForceMode2D.Impulse);
         }
     }
 }
