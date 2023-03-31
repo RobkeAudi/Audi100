@@ -10,8 +10,7 @@ public class CarController : MonoBehaviour
     private bool isBraking;
     public float speed = 100;
     private float jumpingPower = 45f;
-    public float maxRotationsPerSecond = 5f;
-    public float maxTorque = 500f;
+   
     private float movement;
     public GameObject gameOverText;
 
@@ -32,14 +31,6 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float currentAngularVelocity = rb.angularVelocity;
-        float maxAngularVelocity = maxRotationsPerSecond * 360f; // 360 degrees in a full rotation
-        float clampedAngularVelocity = Mathf.Clamp(currentAngularVelocity, -maxAngularVelocity, maxAngularVelocity);
-        rb.angularVelocity = clampedAngularVelocity;
-
-        float currentTorque = rb.mass * Physics2D.gravity.magnitude * transform.localScale.x * Input.GetAxis("Horizontal");
-        float clampedTorque = Mathf.Clamp(currentTorque, -maxTorque, maxTorque);
-        rb.AddTorque(clampedTorque);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
