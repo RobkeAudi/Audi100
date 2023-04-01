@@ -84,4 +84,5 @@ public class CarController : MonoBehaviour
             rb.AddForce(-rb.velocity.normalized * 10f, ForceMode2D.Impulse);
         }
     }
+
 }
