@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class CarController : MonoBehaviour
    
     private float movement;
     public GameObject gameOverText;
+    public GameObject button;
+    
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -26,6 +30,8 @@ public class CarController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gameOverText.gameObject.SetActive(false);
+        button.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -75,14 +81,26 @@ public class CarController : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             gameOverText.gameObject.SetActive(true);
+            button.gameObject.SetActive(true);
             // Stop the game
-            Time.timeScale = 0;
+             Time.timeScale = 0;
         }
 
         if (collision.gameObject.CompareTag("Ground"))
         {
             rb.AddForce(-rb.velocity.normalized * 10f, ForceMode2D.Impulse);
         }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("0");
     }
 
 }
