@@ -8,22 +8,20 @@ public class CarController : MonoBehaviour
 {
     public Rigidbody2D backTire;
     public Rigidbody2D frontTire;
-    public float brakeForce = 5000f;
-    private bool isBraking;
-    public float speed = 100;
-    private float jumpingPower = 45f;
-   
-    private float movement;
     public GameObject gameOverText;
     public GameObject button;
-    
 
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
+    public Rigidbody2D rb;
 
-    private bool isGrounded;
-    private float groundCheckRadius = 0.1f;
+    public float brakeForce = 5000f;
+    private bool isBraking;
+
+    public float speed = 100;
+    private float movement;
+    private float jumpingPower = 45f;
+
+    private bool isJumping;
+    private bool isGrounded = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,19 +32,16 @@ public class CarController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
         movement = Input.GetAxis("Horizontal");
+        //rb.freezeRotation = true;
 
-        rb.freezeRotation = true;
-
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isJumping == false && isGrounded == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            isJumping = true;
+            isGrounded = false;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -83,14 +78,33 @@ public class CarController : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
             button.gameObject.SetActive(true);
             // Stop the game
-             Time.timeScale = 0;
+            Time.timeScale = 0;
         }
 
         if (collision.gameObject.CompareTag("Ground"))
         {
-            rb.AddForce(-rb.velocity.normalized * 10f, ForceMode2D.Impulse);
+            isJumping = false;
+            isGrounded = true;
         }
     }
+
+     void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            isGrounded = false;
+            isJumping = false;
+        }
+    }
+
 
     public void RestartLevel()
     {
