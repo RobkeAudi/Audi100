@@ -18,10 +18,12 @@ public class CarController : MonoBehaviour
 
     public float speed = 100;
     private float movement;
-    private float jumpingPower = 45f;
+    private float jumpingPower = 50f;
 
     private bool isJumping;
     private bool isGrounded = true;
+
+    private Text speedText;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +32,29 @@ public class CarController : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         button.gameObject.SetActive(false);
 
+        speedText = GameObject.Find("SpeedText").GetComponent<Text>();
+
     }
 
     void Update()
     {
         movement = Input.GetAxis("Horizontal");
         //rb.freezeRotation = true;
+        int audiSpeedLimit = 50;
+
+        float currentSpeed = rb.velocity.magnitude * 3.6f;
+
+        if (currentSpeed > audiSpeedLimit)
+        {
+            // if the car's speed is too high, set it to the maximum speed
+            speed = audiSpeedLimit;
+            currentSpeed = audiSpeedLimit;
+        }
+
+        if (speedText != null) // check if the speedText variable is not null
+        {
+            speedText.text = "Speed: " + Mathf.RoundToInt(currentSpeed) + " km/h";
+        }
 
         if (Input.GetButtonDown("Jump") && isJumping == false && isGrounded == true)
         {
