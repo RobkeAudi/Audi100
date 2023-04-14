@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMeniu : MonoBehaviour
 {
 
-    public GameObject playerskin;
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+    }
+    public void OpenCustomize()
+    {
+        SceneManager.LoadScene(3);
     }
 }
