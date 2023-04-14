@@ -24,6 +24,10 @@ public class CarController : MonoBehaviour
     private bool isGrounded = true;
 
     private Text speedText;
+    private Text scoreText;
+
+    private int score = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +37,7 @@ public class CarController : MonoBehaviour
         button.gameObject.SetActive(false);
 
         speedText = GameObject.Find("SpeedText").GetComponent<Text>();
-
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>(); 
     }
 
     void Update()
@@ -41,6 +45,9 @@ public class CarController : MonoBehaviour
         movement = Input.GetAxis("Horizontal");
         //rb.freezeRotation = true;
         int audiSpeedLimit = 50;
+
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        scoreText.text = "Score: " + score;
 
         float currentSpeed = rb.velocity.magnitude * 3.6f;
 
@@ -50,6 +57,7 @@ public class CarController : MonoBehaviour
             speed = audiSpeedLimit;
             currentSpeed = audiSpeedLimit;
         }
+
 
         if (speedText != null) // check if the speedText variable is not null
         {
@@ -109,6 +117,12 @@ public class CarController : MonoBehaviour
 
      void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Points"))
+        {
+            score++;
+            scoreText.text = "Score: " + score;
+        }
+
         if (other.CompareTag("Ground"))
         {
             isGrounded = true;
