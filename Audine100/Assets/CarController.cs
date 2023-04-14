@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour
     public Rigidbody2D frontTire;
     public GameObject gameOverText;
     public GameObject button;
+    public GameObject button1;
 
     public Rigidbody2D rb;
 
@@ -35,6 +36,7 @@ public class CarController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gameOverText.gameObject.SetActive(false);
         button.gameObject.SetActive(false);
+        button1.gameObject.SetActive(false);
 
         speedText = GameObject.Find("SpeedText").GetComponent<Text>();
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>(); 
@@ -104,6 +106,7 @@ public class CarController : MonoBehaviour
         {
             gameOverText.gameObject.SetActive(true);
             button.gameObject.SetActive(true);
+            button1.gameObject.SetActive(true);
             // Stop the game
             Time.timeScale = 0;
         }
@@ -147,7 +150,7 @@ public class CarController : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("0");
+        SceneManager.LoadScene(0);
     }
 
 }
