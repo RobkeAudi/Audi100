@@ -27,19 +27,21 @@ public class CarController : MonoBehaviour
     private Text speedText;
     private Text scoreText;
 
-    private int score = 0;
+    public int score = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("Score", 0);
+
         rb = GetComponent<Rigidbody2D>();
         gameOverText.gameObject.SetActive(false);
         button.gameObject.SetActive(false);
         button1.gameObject.SetActive(false);
 
         speedText = GameObject.Find("SpeedText").GetComponent<Text>();
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>(); 
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
     }
 
     void Update()
@@ -76,6 +78,7 @@ public class CarController : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -97,6 +100,18 @@ public class CarController : MonoBehaviour
         {
             rb.AddForce(-rb.velocity * brakeForce);
         }
+
+        if (!isGrounded)
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                rb.freezeRotation = true;
+            }
+            else
+            {
+                rb.freezeRotation = false;
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -116,6 +131,12 @@ public class CarController : MonoBehaviour
             isJumping = false;
             isGrounded = true;
         }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            rb.freezeRotation = false;
+        }
     }
 
      void OnTriggerEnter2D(Collider2D other)
@@ -125,6 +146,7 @@ public class CarController : MonoBehaviour
             score++;
             scoreText.text = "Score: " + score;
         }
+        PlayerPrefs.SetInt("Score", score);
 
         if (other.CompareTag("Ground"))
         {

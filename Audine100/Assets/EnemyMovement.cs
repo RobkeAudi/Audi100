@@ -48,4 +48,11 @@ public class EnemyMovement : MonoBehaviour
         localScale.x *= -1;
         transform.localScale = localScale;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(pointA.transform.position, 1f);
+        Gizmos.DrawWireSphere(pointB.transform.position, 1f);
+        Gizmos.DrawLine(pointA.transform.position, pointB.transform.position);
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class SkinManager : MonoBehaviour
 {
@@ -10,6 +11,22 @@ public class SkinManager : MonoBehaviour
     public List<Sprite> skins = new List<Sprite>();
     private int selectedSkin = 0;
     public GameObject playerskin;
+    public Text Points;
+
+    void Start()
+    {
+        int score = PlayerPrefs.GetInt("Score", 0); // retrieve the score from PlayerPrefs (default value is 0)
+        Debug.Log(score);
+        if (score == 0)
+        {
+            Points.text = "Points: 0";
+        }
+
+        else
+        {
+            Points.text = "Points: " + score;
+        }
+    }
 
     public void NextOptionCar()
     {
@@ -19,6 +36,7 @@ public class SkinManager : MonoBehaviour
             selectedSkin = 0;
         }
         sr.sprite = skins[selectedSkin];
+       
     }
 
     public void BackOptionCar()
