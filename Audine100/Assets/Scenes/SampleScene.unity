@@ -1379,11 +1379,9 @@ Transform:
   m_LocalPosition: {x: -15.8, y: 1.1, z: 0.42592078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1393833764}
-  - {fileID: 1604544523}
+  m_Children: []
   m_Father: {fileID: 696637660}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &342740100
 PolygonCollider2D:
@@ -1420,7 +1418,7 @@ PolygonCollider2D:
       - {x: 3.47, y: -0.385}
       - {x: 3.51, y: -0.585}
       - {x: 3.52, y: -0.78499997}
-      - {x: 3.5264218, y: -1.236197}
+      - {x: 3.675485, y: -0.8293345}
       - {x: 3.87, y: -0.805}
       - {x: 3.99, y: -0.775}
       - {x: 4.12, y: -0.745}
@@ -1480,20 +1478,23 @@ PolygonCollider2D:
       - {x: -4.0899997, y: -0.615}
       - {x: -3.98, y: -0.645}
       - {x: -3.6499999, y: -0.685}
-      - {x: -3.22, y: -0.72499996}
-      - {x: -2.9861114, y: -1.1290125}
+      - {x: -3.2858112, y: -0.74399614}
+      - {x: -3.0263488, y: -0.74678934}
       - {x: -2.97, y: -0.745}
+      - {x: -2.949997, y: -0.69499993}
       - {x: -2.95, y: -0.695}
       - {x: -2.97, y: -0.555}
       - {x: -2.8799999, y: -0.255}
       - {x: -2.77, y: -0.155}
       - {x: -2.71, y: -0.155}
       - {x: -2.7, y: -0.145}
+      - {x: -2.3006897, y: -0.14499998}
       - {x: -2.01, y: -0.145}
       - {x: -1.88, y: -0.21499999}
       - {x: -1.73, y: -0.375}
       - {x: -1.7199999, y: -0.435}
       - {x: -1.67, y: -0.635}
+      - {x: -1.6500015, y: -0.855}
       - {x: -1.65, y: -0.85499996}
       - {x: -1.63, y: -0.865}
       - {x: 2.02, y: -0.865}
@@ -2834,8 +2835,10 @@ MonoBehaviour:
   backTire: {fileID: 1604544520}
   frontTire: {fileID: 1393833766}
   gameOverText: {fileID: 981957540}
+  image: {fileID: 881518599}
   button: {fileID: 2016040879}
   button1: {fileID: 1714352847}
+  source: {fileID: 617181681}
   rb: {fileID: 696637659}
   brakeForce: 4
   speed: 200
@@ -2869,10 +2872,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696637652}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -68.72, y: 3.91, z: 0}
+  m_LocalPosition: {x: -67.2, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1393833764}
+  - {fileID: 1604544523}
   - {fileID: 342740099}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -5158,8 +5163,10 @@ MonoBehaviour:
   backTire: {fileID: 1918432051}
   frontTire: {fileID: 1903018663}
   gameOverText: {fileID: 981957540}
+  image: {fileID: 0}
   button: {fileID: 2016040879}
   button1: {fileID: 1714352847}
+  source: {fileID: 0}
   rb: {fileID: 1340823434}
   brakeForce: 4
   speed: 200
@@ -5646,11 +5653,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393833763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.92, y: -0.69, z: -0.42592078}
+  m_LocalPosition: {x: -12.879997, y: 0.40999997, z: 0}
   m_LocalScale: {x: 0.3171663, y: 0.31273043, z: 0.1774357}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 342740099}
+  m_Father: {fileID: 696637660}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1393833765
@@ -5681,7 +5688,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.8
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -6617,7 +6624,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.2
+  m_Mass: 1.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -6702,11 +6709,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604544519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.35, y: -0.7, z: -0.42592078}
+  m_LocalPosition: {x: -18.150002, y: 0.39999998, z: 0}
   m_LocalScale: {x: 0.3082945, y: 0.31051248, z: 0.1774357}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 342740099}
+  m_Father: {fileID: 696637660}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1614960370
