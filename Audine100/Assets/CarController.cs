@@ -9,8 +9,10 @@ public class CarController : MonoBehaviour
     public Rigidbody2D backTire;
     public Rigidbody2D frontTire;
     public GameObject gameOverText;
+    public GameObject image;
     public GameObject button;
     public GameObject button1;
+    public AudioSource source;
 
     public Rigidbody2D rb;
 
@@ -39,6 +41,7 @@ public class CarController : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         button.gameObject.SetActive(false);
         button1.gameObject.SetActive(false);
+        image.gameObject.SetActive(false);
 
         speedText = GameObject.Find("SpeedText").GetComponent<Text>();
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
@@ -122,6 +125,8 @@ public class CarController : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
             button.gameObject.SetActive(true);
             button1.gameObject.SetActive(true);
+            image.gameObject.SetActive(true);
+            source.Play();
             // Stop the game
             Time.timeScale = 0;
         }
