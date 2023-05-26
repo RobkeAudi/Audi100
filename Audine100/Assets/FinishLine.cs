@@ -9,6 +9,9 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            if (SceneManager.GetActiveScene().buildIndex == 2)
+                SceneManager.LoadScene(0);
+            else
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

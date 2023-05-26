@@ -23,6 +23,9 @@ public class CarController : MonoBehaviour
     private float movement;
     private float jumpingPower = 50f;
 
+    private double cooldown = 2.65;
+    private double nextJump;
+
     private bool isJumping;
     private bool isGrounded = true;
 
@@ -35,6 +38,7 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         PlayerPrefs.SetInt("Score", 0);
 
         rb = GetComponent<Rigidbody2D>();
@@ -70,12 +74,15 @@ public class CarController : MonoBehaviour
         {
             speedText.text = "Speed: " + Mathf.RoundToInt(currentSpeed) + " km/h";
         }
-
-        if (Input.GetButtonDown("Jump") && isJumping == false && isGrounded == true)
+        
+            
+        if (Input.GetButtonDown("Jump") && Time.time > nextJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             isJumping = true;
             isGrounded = false;
+            nextJump = Time.time + cooldown;
+
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)

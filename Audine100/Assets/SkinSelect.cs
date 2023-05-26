@@ -12,9 +12,9 @@ public class SkinSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playersprite = selected.GetComponent<SpriteRenderer>().sprite;
+        //playersprite = selected.GetComponent<SpriteRenderer>().sprite;
 
-        Player.GetComponent<SpriteRenderer>().sprite = playersprite;
+        Player.GetComponent<SpriteRenderer>().sprite = selected.GetComponent<SpriteRenderer>().sprite;
     }
 
 }

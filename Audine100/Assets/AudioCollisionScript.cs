@@ -10,8 +10,6 @@ public class AudioCollisionScript : MonoBehaviour
 
     AudioSource source;
     Collider2D collider;
-    float previousTime = 0;
-    bool hasBeenHit = false;
     void Awake()
     {
         source = GetComponent<AudioSource>();
